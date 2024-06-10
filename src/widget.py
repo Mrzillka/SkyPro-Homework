@@ -15,3 +15,11 @@ def mask_account_card(type_and_number: str) -> str:
         given_number = type_and_number[idx:]
         masked_number = masks.get_mask_card_number(given_number)
     return f"{given_type} {masked_number}"
+
+
+def get_data(full_time: str) -> str:
+    """Return date in “dd.mm.yyyy” format"""
+    year = full_time[:4]
+    month = full_time[5:7]
+    day = full_time[8:10]
+    return '.'.join((day, month, year))
