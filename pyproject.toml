@@ -1,0 +1,47 @@
+[tool.poetry]
+name = "homework-2"
+version = "0.1.0"
+description = ""
+authors = ["Mrzillka <mrzillka@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[tool.poetry.group.dev.dependencies]
+requests = "^2.32.3"
+
+[tool.poetry.group.linters.dependencies]
+flake8 = "^7.0.0"
+mypy = "^1.10.0"
+black = "^24.4.2"
+isort = "^5.13.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.flake8]
+max-line-length = 119
+
+[tool.mypy]
+disallow_untyped_defs = true
+warn_return_any = true
+exclude = '''
+(
+  /(
+      \.git
+    | \.idea
+    | \.mypy_cache
+    | \.venv
+  )/
+)
+'''
+
+[tool.black]
+line-length = 119
+exclude = '.git'
+
+[tool.isrt]
+line_length = 119
