@@ -43,5 +43,5 @@ exclude = '''
 line-length = 119
 exclude = '.git'
 
-[tool.isrt]
+[tool.isort]
 line_length = 119

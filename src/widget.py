@@ -1,4 +1,4 @@
-import masks
+from masks import get_mask_card_number, get_mask_account
 
 
 def mask_account_card(type_and_number: str) -> str:
@@ -6,14 +6,14 @@ def mask_account_card(type_and_number: str) -> str:
     if type_and_number[:4] == "Счет":
         given_type = "Счет"
         given_number = type_and_number[5:]
-        masked_number = masks.get_mask_account(given_number)
+        masked_number = get_mask_account(given_number)
     else:
         idx = 0
         while not type_and_number[idx].isdigit():
             idx += 1
-        given_type = type_and_number[:idx - 1]
+        given_type = type_and_number[: idx - 1]
         given_number = type_and_number[idx:]
-        masked_number = masks.get_mask_card_number(given_number)
+        masked_number = get_mask_card_number(given_number)
     return f"{given_type} {masked_number}"
 
 
@@ -22,4 +22,4 @@ def get_data(full_time: str) -> str:
     year = full_time[:4]
     month = full_time[5:7]
     day = full_time[8:10]
-    return '.'.join((day, month, year))
+    return ".".join((day, month, year))
