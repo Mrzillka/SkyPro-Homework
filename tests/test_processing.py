@@ -1,3 +1,5 @@
+import pytest
+
 from src.processing import filter_by_state, sort_by_date
 
 lst = [
@@ -20,6 +22,9 @@ def test_filter_by_state():
 
     assert filter_by_state(lst, 'EXECUTED') == answer_executed
     assert filter_by_state(lst, 'CANCELED') == answer_canceled
+
+    with pytest.raises(KeyError):
+        filter_by_state([{}], "")
 
 
 def test_sort_by_date():
