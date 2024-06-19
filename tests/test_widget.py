@@ -3,15 +3,21 @@ import pytest
 from src.widget import mask_account_card, get_data
 
 
-def test_mask_account_card(card_number, card_number_mask, account_number, account_number_mask):
-    arg_1 = "Visa Platinum 7000 7922 8960 6361"
-    ans_1 = "Visa Platinum 7000 79** **** 6361"
-    assert mask_account_card(arg_1) == ans_1
+@pytest.mark.parametrize("value, expected", [
+    ("Visa Platinum 7000 7922 8960 6361", "Visa Platinum 7000 79** **** 6361"),
+    ("Maestro 1596837868705199", "Maestro 1596 83** **** 5199"),
+    ("MasterCard 7158300734726758", "MasterCard 7158 30** **** 6758"),
+    ("Visa Classic 6831982476737658", "Visa Classic 6831 98** **** 7658"),
+    ("Visa Platinum 8990922113665229", "Visa Platinum 8990 92** **** 5229"),
+    ("Visa Gold 5999414228426353", "Visa Gold 5999 41** **** 6353"),
+    ("Счет 73654108430135874305", "Счет **4305"),
+    ("Счет 64686473678894779589", "Счет **9589"),
+    ("Счет 35383033474447895560", "Счет **5560"),
+    ("Счет 73654108430135874305", "Счет **4305"),
+])
+def test_mask_account_card(card_number, card_number_mask, account_number, account_number_mask, value, expected):
+    assert mask_account_card(value) == expected
     assert mask_account_card(f"Mastercard {card_number}") == f"Mastercard {card_number_mask}"
-
-    argument_2 = "Счет 73654108430135874305"
-    answer_2 = "Счет **4305"
-    assert mask_account_card(argument_2) == answer_2
     assert mask_account_card(f"Счет {account_number}") == f"Счет {account_number_mask}"
 
     with pytest.raises(TypeError):
