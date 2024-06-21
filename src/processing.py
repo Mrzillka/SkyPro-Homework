@@ -1,6 +1,6 @@
 def filter_by_state(list_of_dicts: list[dict], state: str = 'EXECUTED') -> list[dict]:
     """Return dicts with certain state value (EXECUTED by default)"""
-    return list(filter(lambda dict_item: True if dict_item['state'] == state else False, list_of_dicts))
+    return list(filter(lambda dict_item: dict_item['state'] == state, list_of_dicts))
 
 
 def sort_by_date(lst_of_dicts: list[dict], is_reverse: bool = True) -> list[dict]:
