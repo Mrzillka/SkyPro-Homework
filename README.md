@@ -8,13 +8,19 @@
 
 1. Клонируйте репозиторий:
     ```
-    git clone https://github.com/username/project-x.git
+    git clone https://github.com/Mrzillka/SkyPro-Homework.git
     ```
 
 ## Использование:
 
-- Файл `src/masks.py` хранит функции для маскировки номера карты и счета пользователя.
-- Файлs `src/widget.py` и `src/pricessing.py` хранит дополнительные функции
+- Файл `src/masks.py` хранит функции из задания №9.1
+- Файл `src/widget.py` хранит функции из задания №9.2
+- Файл `src/pricessing.py` хранит функции из задания №10.1
+- Папка `tests/` хранит модули тестирования из задания №10.2
+- Файл `src/generators.py` хранит функции из задания №11.1
+
+### Тестирование
+Запустите команду `pytest` в консоли
 
 ## Документация:
 
@@ -47,6 +53,20 @@
 #### `get_data(full_time: str) -> str`
 
 - Возвращает дату в формате ДД.ММ.ГГГГ
+
+### generators
+
+#### `filter_by_currency(transactions: Iterable[dict], currency: str) -> Generator[dict, Any, None]`
+
+- Возвращает объект-генератор транзакций только с определенной валютой.
+
+#### `transaction_descriptions(transactions: Iterable[dict]) -> Generator[str, Any, None]`
+
+- Возвращает объект-генератор описаний транзакций.
+
+#### `card_number_generator() -> Generator[str, Any, None]`
+
+- Возвращает объект-генератор номеров карт в формате XXXX XXXX XXXX XXXX.
 
 ## Лицензия:
 
