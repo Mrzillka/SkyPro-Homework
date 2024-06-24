@@ -4,9 +4,9 @@ from typing import Optional, Any
 
 def log(filename: Optional[str] = None) -> Any | None:
     """Logging if function working successfully or not in the file (or in console by default)"""
-    def wrapper(funk):
+    def wrapper(funk: Any) -> Any | None:
         @wraps(funk)
-        def inner(*args, **kwargs):
+        def inner(*args: Any, **kwargs: Any) -> Any:
             result = None
             error = None
             try:
