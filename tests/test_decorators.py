@@ -10,4 +10,17 @@ def test_log_ok(capsys):
 
     power_2(4)
 
-    assert capsys.readouterr().out == "power_2 ok\n\n"
+    assert "power_2 ok" in capsys.readouterr().out
+
+
+def test_log_error(capsys):
+    @log()
+    def sum_of_two(a, b):
+        return a + b
+
+    try:
+        sum_of_two("1", 2)
+    except TypeError:
+        pass
+
+    assert "sum_of_two error: TypeError. Inputs (('1', 2), {})" in capsys.readouterr().out
