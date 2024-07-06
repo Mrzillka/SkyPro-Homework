@@ -1,6 +1,6 @@
 import json
 
-from external_api import convert_to_rub
+from utils.external_api import convert_to_rub
 
 
 def get_transactions_from_json(path: str) -> list[dict]:
