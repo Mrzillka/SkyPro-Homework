@@ -5,7 +5,7 @@ import requests
 from dotenv import load_dotenv
 
 
-def convert_to_rub(amount: int, _form: str) -> float:
+def convert_to_rub(amount: float, _form: str) -> float:
     url = fr"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={_form}&amount={amount}"
 
     payload = {}
@@ -18,6 +18,3 @@ def convert_to_rub(amount: int, _form: str) -> float:
 
     result = json.loads(response.text)['result']
     return result
-
-
-print(convert_to_rub(5, "USD"))
