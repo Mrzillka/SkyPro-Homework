@@ -6,17 +6,18 @@ from dotenv import load_dotenv
 
 
 def convert_to_rub(amount: float, _form: str) -> float:
+    """Convert amount of currency from any to RUB"""
     url = fr"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={_form}&amount={amount}"
 
-    payload = {}
+    payload: dict = {}
     load_dotenv()
     headers = {
-        "apikey": os.getenv("Exchange_Rates_Data_API")
+        "apikey": os.getenv("EXCHANGE_RATES_DATA_API")
     }
 
     response = requests.request("GET", url, headers=headers, data=payload)
 
-    result = json.loads(response.text)['result']
+    result = float(json.loads(response.text)['result'])
     return result
 
 

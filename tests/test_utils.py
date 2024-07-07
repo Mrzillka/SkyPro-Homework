@@ -1,6 +1,5 @@
 import json
 import os
-from unittest.mock import patch
 
 from utils.utils import get_transactions_from_json
 
