@@ -1,11 +1,13 @@
 import _io
 import json
 import logging
+import csv
 from typing import Any
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s %(module)s %(levelname)s: %(message)s',
-                    filename=r'logs/utils_logs.log',
+                    # filename=r'logs/utils_logs.log',
+                    filename=r'utils_logs.log',
                     filemode='w')
 
 logger = logging.getLogger(__name__)
@@ -19,7 +21,7 @@ def get_transactions(path: str) -> Any:
     file_format = path[path.rfind('.'):]
     try:
         logger.info(f"Try to open json file {path}")
-        with open(path) as f:
+        with open(path, encoding="utf-8") as f:
             logger.info("File was opened")
             if file_format == ".json":
                 transactions_list = get_transactions_from_json(f)
@@ -49,7 +51,11 @@ def get_transactions_from_json(json_obj: _io.TextIOWrapper) -> Any:
 
 def get_transactions_from_csv(csv_obj: _io.TextIOWrapper) -> Any:
     """Load transactions from csv file"""
-    pass
+    reader = csv.DictReader(csv_obj, delimiter=";")
+    transactions_list = []
+    for row in reader:
+        transactions_list.append(row)
+    return transactions_list
 
 
 def get_transactions_from_excel(excel_obj: _io.TextIOWrapper) -> Any:
