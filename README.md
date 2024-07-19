@@ -82,9 +82,21 @@
 
 #### utils
 
-##### `get_transactions_from_json(path: str) -> Any`
+##### `get_transactions(path: str) -> Any`
+
+- Читает все транзакции из JSON/CSV/XLSX файла и возвращает dict
+
+##### `get_transactions_from_json(json_obj: _io.TextIOWrapper) -> Any`
 
 - Читает все транзакции из файла JSON и возвращает dict
+
+##### `get_transactions_from_csv(json_obj: _io.TextIOWrapper) -> Any`
+
+- Читает все транзакции из файла CSV и возвращает dict
+
+##### `get_transactions_from_excel(path: str) -> Any`
+
+- Читает все транзакции из файла XLSX и возвращает dict
 
 #### external_api
 
