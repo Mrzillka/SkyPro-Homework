@@ -1,9 +1,10 @@
-import _io
 import csv
 import json
 import logging
-import pandas as pd
 from typing import Any
+
+import _io
+import pandas as pd
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s %(module)s %(levelname)s: %(message)s',
@@ -13,7 +14,7 @@ logging.basicConfig(level=logging.INFO,
 
 logger = logging.getLogger(__name__)
 
-logger.info(f"Using module utils")
+logger.info("Using module utils")
 
 
 def get_transactions(path: str) -> Any:
@@ -60,7 +61,7 @@ def get_transactions_from_csv(csv_obj: _io.TextIOWrapper) -> Any:
     return transactions_list
 
 
-def get_transactions_from_excel(path) -> Any:
+def get_transactions_from_excel(path: str) -> Any:
     """Load transactions from exel file"""
     excel_obj = pd.read_excel(path)
     return excel_obj.to_dict(orient="records")
