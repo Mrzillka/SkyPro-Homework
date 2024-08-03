@@ -1,6 +1,6 @@
 import pytest
 
-from src.processing import filter_by_state, sort_by_date, filter_by_description
+from src.processing import *
 
 
 def test_filter_by_state(users_data):
@@ -37,4 +37,19 @@ def test_filter_by_description(users_data_with_description):
         {'id': 594226727, 'state': 'CANCELED', 'date': '2018-09-12T21:27:25.241689', 'description': '34'},
     ]
     assert filter_by_description(users_data_with_description, "3") == answer_filtered
+
+
+def test_count_transactions_by_type():
+    transactions = [
+        {"description": "Перевод со счета"},
+        {"description": "Перевод на счет"},
+        {"description": "Открытие вклада"},
+        {"description": "Закрытие перевода"},
+    ]
+    answer = {
+        'Перевод': 3,
+        'Перевод на счет': 1,
+        'Открытие': 1
+    }
+    assert count_transactions_by_type(transactions, ["Перевод", "Перевод на счет", "Открытие"]) == answer
 
