@@ -1,6 +1,6 @@
 import pytest
 
-from src.processing import filter_by_state, sort_by_date
+from src.processing import filter_by_state, sort_by_date, filter_by_description
 
 
 def test_filter_by_state(users_data):
@@ -29,3 +29,12 @@ def test_sort_by_date(users_data):
     ]
 
     assert sort_by_date(users_data) == answer_sorted
+
+
+def test_filter_by_description(users_data_with_description):
+    answer_filtered = [
+        {'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572', 'description': '23'},
+        {'id': 594226727, 'state': 'CANCELED', 'date': '2018-09-12T21:27:25.241689', 'description': '34'},
+    ]
+    assert filter_by_description(users_data_with_description, "3") == answer_filtered
+
