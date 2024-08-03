@@ -4,7 +4,7 @@ from unittest.mock import patch
 
 from dotenv import load_dotenv
 
-from utils.external_api import convert_to_rub, get_transaction_amount
+from src.external_api import convert_to_rub, get_transaction_amount
 
 
 @patch("requests.request")
@@ -19,7 +19,7 @@ def test_convert_to_rub(mock_request):
     mock_request.assert_called_once_with("GET", url, headers=headers, data={})
 
 
-@patch("utils.external_api.convert_to_rub")
+@patch("src.external_api.convert_to_rub")
 def test_get_transaction_amount(mock_convert, single_transaction):
     mock_convert.return_value = 80
     assert get_transaction_amount(single_transaction) == 80.0

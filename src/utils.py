@@ -64,6 +64,3 @@ def get_transactions_from_excel(path) -> Any:
     """Load transactions from exel file"""
     excel_obj = pd.read_excel(path)
     return excel_obj.to_dict(orient="records")
-
-
-get_transactions_from_excel("transactions_excel.xlsx")
