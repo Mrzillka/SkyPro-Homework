@@ -16,9 +16,6 @@ def test_filter_by_state(users_data):
     assert filter_by_state(users_data, 'EXECUTED') == answer_executed
     assert filter_by_state(users_data, 'CANCELED') == answer_canceled
 
-    with pytest.raises(KeyError):
-        filter_by_state([{}], "")
-
 
 def test_sort_by_date(users_data):
     answer_sorted = [

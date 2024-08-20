@@ -1,10 +1,10 @@
-import collections
+from collections import Counter, defaultdict
 import re
 
 
 def filter_by_state(list_of_transactions: list[dict], state: str = 'EXECUTED') -> list[dict]:
     """Return dicts with certain state value (EXECUTED by default)"""
-    return list(filter(lambda dict_item: dict_item['state'] == state, list_of_transactions))
+    return list(filter(lambda dict_item: dict_item and dict_item['state'] == state, list_of_transactions))
 
 
 def sort_by_date(list_of_transactions: list[dict], is_reverse: bool = True) -> list[dict]:
@@ -22,11 +22,11 @@ def filter_by_description(list_of_transactions: list[dict], search: str) -> list
     return new_list
 
 
-def count_transactions_by_type(list_of_transactions: list[dict], categories: list[str]) -> dict:
+def count_transactions_by_type(transactions: list[dict], categories: list[str]) -> dict:
     """Return a dict, containing count of operations by categories"""
-    counter: collections.defaultdict = collections.defaultdict(int)
-    for transaction in list_of_transactions:
+    counter: defaultdict = defaultdict(int)
+    for transaction in transactions:
         for category in categories:
             if re.search(rf"{category}", transaction["description"], re.IGNORECASE):
                 counter[category] += 1
-    return dict(counter)
+    return dict(Counter(counter))
