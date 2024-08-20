@@ -4,7 +4,7 @@ import re
 
 def filter_by_state(list_of_transactions: list[dict], state: str = 'EXECUTED') -> list[dict]:
     """Return dicts with certain state value (EXECUTED by default)"""
-    return list(filter(lambda dict_item: dict_item['state'] == state, list_of_transactions))
+    return list(filter(lambda dict_item: dict_item and dict_item['state'] == state, list_of_transactions))
 
 
 def sort_by_date(list_of_transactions: list[dict], is_reverse: bool = True) -> list[dict]:
