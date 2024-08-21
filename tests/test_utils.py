@@ -1,7 +1,7 @@
 import json
 import os
 
-from utils.utils import get_transactions
+from src.utils import get_transactions
 
 
 def test_get_transactions_from_json(transactions):
