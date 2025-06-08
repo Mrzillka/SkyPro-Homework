@@ -6,14 +6,14 @@ from typing import Any, Dict, List
 import requests
 from dotenv import load_dotenv
 
-from external_api import convert_to_rub
+from src.external_api import convert_to_rub
 from src.utils import get_transactions_from_csv
 
 
 def main_page() -> json.JSONDecoder:
-    settings = json.loads(open(os.path.abspath(os.path.join(os.pardir, "data/user-settings.json")), mode='r').read())
+    settings = json.loads(open(os.path.abspath(os.path.join("data", "user-settings.json")), mode='r').read())
     transactions = get_transactions_from_csv(
-        open(os.path.abspath(os.path.join(os.pardir, "data/operations.csv")),
+        open(os.path.abspath(os.path.join("data", "operations.csv")),
              encoding='UTF-8'),
         delimiter=',')
 
@@ -136,6 +136,3 @@ def get_stocks_exchange_rate(stocks: list[str]) -> list[dict[str, str | float]]:
         d['price'] = price
 
     return stock_rates
-
-
-main_page()
