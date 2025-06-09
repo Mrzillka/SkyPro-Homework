@@ -13,67 +13,108 @@
 
 ## Использование:
 
+- Для запуска программы запустите `main.py`
 - Файл `src/masks.py` хранит функции из задания №9.1
 - Файл `src/widget.py` хранит функции из задания №9.2
 - Файл `src/pricessing.py` хранит функции из задания №10.1
 - Папка `tests/` хранит модули тестирования из задания №10.2
 - Файл `src/generators.py` хранит функции из задания №11.1
 - Файл `src/decorators` хранит декоратор из задания №11.2
+- Файлы `utils/utils.py` и `utils/external_apy.py` хранят функции из задания №12.1
+- Файл `src/sevises` хранят функции для задач из второй категории проекта
 
 ### Тестирование
 Запустите команду `pytest` в консоли
 
 ## Документация:
 
-### masks
+### src
 
-#### `get_mask_card_number(card_number: str) -> str`
+#### masks
+
+##### `get_mask_card_number(card_number: str) -> str`
 
 - Возвращает маску номера карты из 16 символов в формате XXXX XX** **** XXXX
 
-#### `get_mask_account(account_number: str) -> str`
+##### `get_mask_account(account_number: str) -> str`
 
 - Возвращает маску 20-значного числа в формате **XXXX
 
-### processing
+#### processing
 
-#### `filter_by_state(lst_of_dicts: list[dict], state: str = 'EXECUTED') -> list[dict]`
+##### `filter_by_state(lst_of_dicts: list[dict], state: str = 'EXECUTED') -> list[dict]`
 
 - Возвращает словари с определенным значением ключа state (по умолчанию 'EXECUTED')
 
-#### `sort_by_date(lst_of_dicts: list[dict], is_reverse: bool = True) -> list[dict]`
+##### `sort_by_date(lst_of_dicts: list[dict], is_reverse: bool = True) -> list[dict]`
 
 - Возвращает новый список, содержащий все словари в порядке убывания, отсортированные по значению даты.
 
-### widget
+#### widget
 
-#### `mask_account_card(type_and_number: str) -> str`
+##### `mask_account_card(type_and_number: str) -> str`
 
 - Получает тип и номер карты/счета и возвращает строку с замаскированным номером.
 
-#### `get_data(full_time: str) -> str`
+##### `get_data(full_time: str) -> str`
 
 - Возвращает дату в формате ДД.ММ.ГГГГ
 
-### generators
+#### generators
 
-#### `filter_by_currency(transactions: Iterable[dict], currency: str) -> Generator[dict, Any, None]`
+##### `filter_by_currency(transactions: Iterable[dict], currency: str) -> Generator[dict, Any, None]`
 
 - Возвращает объект-генератор транзакций только с определенной валютой.
 
-#### `transaction_descriptions(transactions: Iterable[dict]) -> Generator[str, Any, None]`
+##### `transaction_descriptions(transactions: Iterable[dict]) -> Generator[str, Any, None]`
 
 - Возвращает объект-генератор описаний транзакций.
 
-#### `card_number_generator() -> Generator[str, Any, None]`
+##### `card_number_generator() -> Generator[str, Any, None]`
 
 - Возвращает объект-генератор номеров карт в формате XXXX XXXX XXXX XXXX.
 
-### decorators
+#### decorators
 
-#### `log(filename: Optional[str] = None) -> Any | None`
+##### `log(filename: Optional[str] = None) -> Any | None`
 
 - Логгирует корректность работы функции в файл (в консоль по умолчанию)
+
+#### services
+
+##### `investment_bank(month: str, transactions: List[Dict[str, Any]], limit: int) -> float`
+
+- Рассчитывает сумму инвестиций в копилку за данный месяц с данным лимитом округления
+
+### utils
+
+#### utils
+
+##### `get_transactions(path: str) -> Any`
+
+- Читает все транзакции из JSON/CSV/XLSX файла и возвращает dict
+
+##### `get_transactions_from_json(json_obj: _io.TextIOWrapper) -> Any`
+
+- Читает все транзакции из файла JSON и возвращает dict
+
+##### `get_transactions_from_csv(json_obj: _io.TextIOWrapper) -> Any`
+
+- Читает все транзакции из файла CSV и возвращает dict
+
+##### `get_transactions_from_excel(path: str) -> Any`
+
+- Читает все транзакции из файла XLSX и возвращает dict
+
+#### external_api
+
+##### `convert_to_rub(amount: float, _form: str) -> float`
+
+- Конвертирует сумму валюты из любой в RUB
+
+##### `get_transaction_amount(transaction: dict) -> float`
+
+- Возвращает суммы операции в рублях
 
 ## Лицензия:
 
