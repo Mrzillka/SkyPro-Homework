@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 logger.info("Using module utils")
 
 
-def get_transactions(path: str) -> Any:
+def get_transactions(path: str, delimiter: str = ";") -> Any:
     """Read all transactions from file and return dict"""
     logger.debug("Function 'get_transactions' was called")
     file_format = path[path.rfind('.'):]
@@ -31,7 +31,7 @@ def get_transactions(path: str) -> Any:
                 if file_format == ".json":
                     transactions_list = get_transactions_from_json(f)
                 elif file_format == ".csv":
-                    transactions_list = get_transactions_from_csv(f)
+                    transactions_list = get_transactions_from_csv(f, delimiter)
                 else:
                     logger.warning(f"Unsupported file format {file_format}")
                     transactions_list = []
@@ -52,9 +52,9 @@ def get_transactions_from_json(json_obj: _io.TextIOWrapper) -> Any:
     return transactions_list
 
 
-def get_transactions_from_csv(csv_obj: _io.TextIOWrapper) -> Any:
+def get_transactions_from_csv(csv_obj: _io.TextIOWrapper, delimiter: str = ";") -> Any:
     """Load transactions from csv file"""
-    reader = csv.DictReader(csv_obj, delimiter=";")
+    reader = csv.DictReader(csv_obj, delimiter=delimiter)
     transactions_list = []
     for row in reader:
         transactions_list.append(row)
